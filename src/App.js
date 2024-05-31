@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Layout, Menu } from 'antd';
+
+import axios from 'axios'
 
 import {
   Route,
@@ -14,7 +16,44 @@ import routes from './routes'
 const { Header, Content, Sider } = Layout;
 const navRoutes = routes.filter((route) => route.isNav === true)
 
-function App() {
+function getRepos(username){
+  // 这里使用了 ES6 的字符串模板
+  return axios.get(`https://api.github.com/users/${username}/repos`);
+}
+
+function getGithubInfo(username){
+  // 将请求回来的数据做了一个 merge 操作
+  return axios.all([
+    getRepos(username),
+  //   getUserInfo(username)
+  ])
+  .then((arr) => ({
+      repos: arr[0].data,
+      bio: arr[1].data}
+  ));
+}
+
+class App extends Component {
+  // state = {
+  //   bio: {
+  //     name: 'Fay12356'
+  //   },
+  //   repos: ['a', 'b', 'c']
+  // }
+  // componentDidMount(){
+
+  //   getGithubInfo( this.props.params.username )
+  //     .then( ( data ) => {
+  //       // 测试一下传入用户名后返回的数据
+  //       console.log( data );
+  //       // 更新state数据
+  //       this.setState({
+  //         bio: data.bio,
+  //         repos: data.repos
+  //       })
+  //     });
+  //   } 
+render(){
   return (
     <Layout>
       <Header className="header">
@@ -65,7 +104,7 @@ function App() {
         </Layout>
       </Layout>
     </Layout>
-  );
+  );}
 }
 
 export default App
