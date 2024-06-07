@@ -7,12 +7,12 @@ import {
 const routes = [{
     path: '/dashboard',
     component: Dashboard,
-    title: 'Dashboard',
+    title: 'React',
     isNav: true,
 }, {
     path: '/companies',
     component: Companies,
-    title: 'Companies',
+    title: 'Project',
     isNav: true,
 }]
 

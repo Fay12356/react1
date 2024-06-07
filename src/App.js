@@ -34,12 +34,12 @@ function getGithubInfo(username){
 }
 
 class App extends Component {
-  // state = {
-  //   bio: {
-  //     name: 'Fay12356'
-  //   },
-  //   repos: ['a', 'b', 'c']
-  // }
+  state = {
+    bio: {
+      name: 'Fay12356'
+    },
+    repos: ['a', 'b', 'c']
+  }
   // componentDidMount(){
 
   //   getGithubInfo( this.props.params.username )
